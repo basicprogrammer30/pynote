@@ -22,4 +22,4 @@ ENV PATH="/root/venv/bin:$PATH"
 EXPOSE 8888
 
 # Default command
-CMD ["jupyter", "notebook", "--no-browser", "--allow-root"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
