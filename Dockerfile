@@ -18,8 +18,16 @@ RUN python3 -m venv /root/venv && \
 # Add the virtual environment's binary directory to PATH
 ENV PATH="/root/venv/bin:$PATH"
 
+# Generate Jupyter config and disable password/token
+RUN jupyter notebook --generate-config && \
+    echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.password = ''" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.open_browser = False" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.allow_root = True" >> /root/.jupyter/jupyter_notebook_config.py
+
 # Expose Jupyter Notebook port
 EXPOSE 8888
 
 # Default command
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+CMD ["jupyter", "notebook"]
