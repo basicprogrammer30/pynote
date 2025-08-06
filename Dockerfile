@@ -30,4 +30,4 @@ RUN jupyter notebook --generate-config && \
 EXPOSE 8888
 
 # Default command
-CMD ["jupyter", "notebook"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
