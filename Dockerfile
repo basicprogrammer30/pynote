@@ -2,10 +2,9 @@ FROM debian:latest
 
 # Install Python and other dependencies
 RUN apt-get update && apt-get install -y \
-    python3 \
+    python3-full \
     python3-pip \
-    python3-venv \
-    && rm -rf /var/lib/apt/lists/*
+    python3-venv
 
 # Set working directory
 WORKDIR /root
@@ -13,7 +12,8 @@ WORKDIR /root
 # Create virtual environment and activate it to install Jupyter
 RUN python3 -m venv /root/venv && \
     /root/venv/bin/pip install --upgrade pip && \
-    /root/venv/bin/pip install notebook
+    /root/venv/bin/pip install notebook jupyter-resource-usage
+    /root/venv/bin/pip install tensorflow tf-keras wandb transformers datasets
 
 # Add the virtual environment's binary directory to PATH
 ENV PATH="/root/venv/bin:$PATH"
