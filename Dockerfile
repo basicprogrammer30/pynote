@@ -12,7 +12,7 @@ WORKDIR /root
 # Create virtual environment and activate it to install Jupyter
 RUN python3 -m venv /root/venv && \
     /root/venv/bin/pip install --upgrade pip && \
-    /root/venv/bin/pip install notebook jupyter-resource-usage
+    /root/venv/bin/pip install notebook jupyter-resource-usage && \
     /root/venv/bin/pip install tensorflow tf-keras wandb transformers datasets
 
 # Add the virtual environment's binary directory to PATH
